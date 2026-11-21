@@ -1,0 +1,172 @@
+{
+  "models": {
+    "Logistic Regression": {
+      "threshold": 0.41,
+      "accuracy": 0.6666666666666666,
+      "precision": 0.30128205128205127,
+      "recall": 0.8103448275862069,
+      "f1": 0.4392523364485981,
+      "roc_auc": 0.8095455583466544,
+      "pr_auc": 0.43484998435690614,
+      "confusion_matrix": [
+        [
+          193,
+          109
+        ],
+        [
+          11,
+          47
+        ]
+      ],
+      "best_params": {
+        "C": 0.03
+      },
+      "train_roc_auc": 0.8464498742364355,
+      "cv_roc_auc": 0.8282429033417176,
+      "cv_roc_auc_std": 0.019313732044176756,
+      "cv_pr_auc": 0.46680964632145105,
+      "cv_pr_auc_std": 0.05163824712885378,
+      "gap_train_cv": 0.0182069708947179,
+      "gap_train_test": 0.03690431588978105,
+      "fit_flag": "OK",
+      "oof_fbeta": 0.6310679611650486
+    },
+    "Random Forest": {
+      "threshold": 0.43,
+      "accuracy": 0.6916666666666667,
+      "precision": 0.3007518796992481,
+      "recall": 0.6896551724137931,
+      "f1": 0.418848167539267,
+      "roc_auc": 0.7709522722082668,
+      "pr_auc": 0.3923053817889342,
+      "confusion_matrix": [
+        [
+          209,
+          93
+        ],
+        [
+          18,
+          40
+        ]
+      ],
+      "best_params": {
+        "max_depth": 5,
+        "min_samples_leaf": 15
+      },
+      "train_roc_auc": 0.8760510240747396,
+      "cv_roc_auc": 0.7845131153431548,
+      "cv_roc_auc_std": 0.022645026078031188,
+      "cv_pr_auc": 0.4268286418781117,
+      "cv_pr_auc_std": 0.0589888600572281,
+      "gap_train_cv": 0.09153790873158474,
+      "gap_train_test": 0.10509875186647277,
+      "fit_flag": "Overfit",
+      "oof_fbeta": 0.5935754189944135
+    },
+    "Gradient Boosting": {
+      "threshold": 0.26,
+      "accuracy": 0.5972222222222222,
+      "precision": 0.26229508196721313,
+      "recall": 0.8275862068965517,
+      "f1": 0.3983402489626556,
+      "roc_auc": 0.7767184288650376,
+      "pr_auc": 0.4422497325322125,
+      "confusion_matrix": [
+        [
+          167,
+          135
+        ],
+        [
+          10,
+          48
+        ]
+      ],
+      "best_params": {
+        "learning_rate": 0.06,
+        "max_depth": 3,
+        "max_iter": 150,
+        "min_samples_leaf": 30
+      },
+      "train_roc_auc": 0.9382572763205175,
+      "cv_roc_auc": 0.7809917355371901,
+      "cv_roc_auc_std": 0.025652848109433215,
+      "cv_pr_auc": 0.43482962951558407,
+      "cv_pr_auc_std": 0.04631795502148374,
+      "gap_train_cv": 0.15726554078332733,
+      "gap_train_test": 0.16153884745547986,
+      "fit_flag": "Overfit",
+      "oof_fbeta": 0.5765710799267846
+    }
+  },
+  "final_model": "Logistic Regression",
+  "justification": "Logistic Regression is selected because it has the best cross-validated PR-AUC (0.467 +/- 0.052) after penalising instability, and its train-vs-CV gap is only 0.018 (OK). At the CV-chosen threshold 0.41 it catches 81% of poor-outcome groups on the held-out test set with 30% precision (F1 0.44, ROC-AUC 0.810). Accuracy is misleading here: a model that always says 'No risk' scores 83.9% accuracy yet finds 0% of the groups that need help, so selection uses PR-AUC / recall / F1 instead.",
+  "threshold_beta": 2.0,
+  "tier_cuts": {
+    "low": 0.4767,
+    "high": 0.7668
+  },
+  "tier_candidate_rank": 0,
+  "tiers_test": [
+    {
+      "Tier": "Low",
+      "Groups": 236,
+      "Poor outcomes": 16,
+      "Observed poor-outcome rate": 0.06779661016949153
+    },
+    {
+      "Tier": "Medium",
+      "Groups": 83,
+      "Poor outcomes": 22,
+      "Observed poor-outcome rate": 0.26506024096385544
+    },
+    {
+      "Tier": "High",
+      "Groups": 41,
+      "Poor outcomes": 20,
+      "Observed poor-outcome rate": 0.4878048780487805
+    }
+  ],
+  "tiers_train_oof": [
+    {
+      "Tier": "Low",
+      "Groups": 936,
+      "Poor outcomes": 53,
+      "Observed poor-outcome rate": 0.056623931623931624
+    },
+    {
+      "Tier": "Medium",
+      "Groups": 360,
+      "Poor outcomes": 102,
+      "Observed poor-outcome rate": 0.2833333333333333
+    },
+    {
+      "Tier": "High",
+      "Groups": 144,
+      "Poor outcomes": 75,
+      "Observed poor-outcome rate": 0.5208333333333334
+    }
+  ],
+  "n_train": 1440,
+  "n_test": 360,
+  "train_poor_rate": 0.1597222222222222,
+  "test_poor_rate": 0.16111111111111112,
+  "baseline_accuracy_always_no": 0.8388888888888889,
+  "features": [
+    "program",
+    "project_type",
+    "has_industry_sponsor",
+    "group_size",
+    "team_avg_cgpa",
+    "team_min_cgpa",
+    "supervisor_experience_years",
+    "supervisor_active_groups",
+    "proposal_revisions",
+    "supervisor_meetings_8wk",
+    "github_commits_8wk",
+    "mid_eval_score",
+    "weeks_to_approval_wk8",
+    "cgpa_gap",
+    "commits_per_meeting",
+    "proposal_delay_flag"
+  ]
+}
